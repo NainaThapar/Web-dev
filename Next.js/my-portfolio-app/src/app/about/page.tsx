@@ -1,6 +1,8 @@
 import Image from 'next/image'
 import codePic from '../../../public/images/code.png';
 import { Merienda } from 'next/font/google';
+import AboutBtn from '@/components/aboutBtn';
+
 
 const sansita = Merienda({
     weight: ['400'],
@@ -23,6 +25,7 @@ export default function About() {
       // blurDataURL="data:..." automatically provided
       // placeholder="blur" // Optional blur-up while loading
     />
+    <AboutBtn />
         </div>
         <div className={`${sansita.className} my-40 text-2xl`}>
         <div className='mb-4'>🌻 Recently graduated from Simon Fraser University with a Masters in Professional Computer Science, specializing in Big Data.</div>
