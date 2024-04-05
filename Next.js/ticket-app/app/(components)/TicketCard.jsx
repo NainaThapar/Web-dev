@@ -2,6 +2,7 @@ import PriorityDisplay from "./PriorityDisplay";
 import ProgressDisplay from "./ProgressDisplay";
 import DeleteBlock from "./DeleteBlock";
 import StatusDisplay from "./StatusDisplay";
+import Link from "next/link";
 
 const TicketCard = ({ ticket }) => {
   const formatTimestamp = (timestamp) => {
@@ -23,24 +24,24 @@ const TicketCard = ({ ticket }) => {
       <div className="flex mb-3">
         <PriorityDisplay priority={ticket.priority}></PriorityDisplay>
         <div className="ml-auto">
-          <DeleteBlock></DeleteBlock>
+          <DeleteBlock id={ticket._id}></DeleteBlock>
         </div>
       </div>
-      <h4>Ticket Title</h4>
-      <hr className="h-px border-0 bg-page mb-2" />
-      <p className="whitespace-pre-wrap">
-        This is the ticket description! Please work on it.
-      </p>
-      <div className="flex-grow"></div>
-      <div className="flex mt-2">
-        <div className="flex flex-col">
-          <p className="text-xs my-1">{formatTimestamp(ticket.createdAt)}</p>
-          <ProgressDisplay progress={ticket.progress}></ProgressDisplay>
+      <Link href={`/TicketPage/${ticket._id}`} style={{ display: "contents" }}>
+        <h4>{ticket.title}</h4>
+        <hr className="h-px border-0 bg-page mb-2" />
+        <p className="whitespace-pre-wrap">{ticket.description}</p>
+        <div className="flex-grow"></div>
+        <div className="flex mt-2">
+          <div className="flex flex-col">
+            <p className="text-xs my-1">{formatTimestamp(ticket.createdAt)}</p>
+            <ProgressDisplay progress={ticket.progress}></ProgressDisplay>
+          </div>
+          <div className="ml-auto flex items-end">
+            <StatusDisplay status={ticket.status}></StatusDisplay>
+          </div>
         </div>
-        <div className="ml-auto flex items-end">
-          <StatusDisplay status={ticket.status}></StatusDisplay>
-        </div>
-      </div>
+      </Link>
     </div>
   );
 };
